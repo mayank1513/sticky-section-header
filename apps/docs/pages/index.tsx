@@ -1,4 +1,4 @@
-import { StickySectionHeader } from "ui/dist";
+import { StickySectionHeader } from "@mayank1513/sticky-section-header";
 import { styled } from "linaria/react";
 import { css } from "linaria";
 
@@ -35,17 +35,19 @@ export default function Docs() {
       the following
       <br />
       <br />
-      <code>yarn add sticky-section-header</code>
+      <code>yarn add @mayank1513/sticky-section-header</code>
       <br />
-      <code>npm i sticky-section-header</code>
+      <code>npm i @mayank1513/sticky-section-header</code>
       <br />
-      <code>pnpm i sticky-section-header</code>
+      <code>pnpm i @mayank1513/sticky-section-header</code>
       <br />
       <br />
       <StickySectionHeader>
         <h2>Simple usage</h2>
       </StickySectionHeader>
-      <code>import {StickySectionHeader} from "sticky-section-header";</code>
+      <code>
+        import {StickySectionHeader} from "@mayank1513/sticky-section-header";
+      </code>
       <br />
       <br />
       <code>export default function YourComponent() &#123;</code>
@@ -74,7 +76,9 @@ export default function Docs() {
       <StickySectionHeader top={50}>
         <h2>Use with custom top position</h2>
       </StickySectionHeader>
-      <code>import {StickySectionHeader} from "sticky-section-header";</code>
+      <code>
+        import {StickySectionHeader} from "@mayank1513/sticky-section-header";
+      </code>
       <br />
       <br />
       <code>export default function YourComponent() &#123;</code>

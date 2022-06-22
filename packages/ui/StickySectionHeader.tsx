@@ -28,6 +28,7 @@ export function StickySectionHeader({
         entries[0].target.style.position = "unset";
       }
     };
+    // @ts-ignore
     const observer = new IntersectionObserver(observerHandler, options);
     target && observer.observe(target);
     return () => {
