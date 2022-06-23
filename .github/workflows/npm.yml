@@ -20,13 +20,13 @@ jobs:
       - name: Build package
         run: tsc -p ./packages/ui/tsconfig-cjs.json
 
-      - name: Change dir and update version
-        run: |
-          cd ./packages/ui/dist
-          npm version patch
+      - name: Update version
+        working-directory: ./packages/ui/dist
+        run: npm version patch
 
       - name: Publish tag to npm
         if: contains(github.ref, 'tags')
+        working-directory: ./packages/ui/dist
         run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
@@ -36,6 +36,7 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
 
       - name: Publish tag to GPR
+        working-directory: ./packages/ui/dist
         run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
