@@ -20,9 +20,10 @@ jobs:
       - name: Build package
         run: tsc -p ./packages/ui/tsconfig-cjs.json
 
-      - name: Update version
-        working-directory: ./packages/ui/dist
-        run: npm version patch
+      # Removing this step as the updated version is not written back to GitHub repo
+      # - name: Update version
+      #   working-directory: ./packages/ui/dist
+      #   run: npm version patch
 
       - name: Publish tag to npm
         if: contains(github.ref, 'tags')
