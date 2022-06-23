@@ -13,6 +13,8 @@
     "simple to use",
     "sticky-header",
     "sticky-section-header",
+    "collapsible-sticky-section-header",
+    "collapsible-header",
     "mayank1513"
   ],
   "peerDependencies": {

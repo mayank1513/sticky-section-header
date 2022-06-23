@@ -22,11 +22,8 @@ export function StickySectionHeader({
       threshold: [1],
     };
     const observerHandler = (entries: any[]) => {
-      if (entries[0].boundingClientRect.top < parseInt(`${top + 1}`)) {
-        entries[0].target.style.position = "sticky";
-      } else {
-        entries[0].target.style.position = "unset";
-      }
+      entries[0].target.style.position =
+        entries[0].boundingClientRect.top < top + 1 ? "sticky" : "unset";
     };
     // @ts-ignore
     const observer = new IntersectionObserver(observerHandler, options);
@@ -36,7 +33,10 @@ export function StickySectionHeader({
     };
   }, [ref?.current, viewPort]);
   return (
-    <header style={{ top: `${top}px` }} ref={ref} {...props}>
+    <header
+      style={{ top: `${top}px`, boxSizing: "border-box" }}
+      ref={ref}
+      {...props}>
       {children}
     </header>
   );

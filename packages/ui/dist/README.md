@@ -1,8 +1,8 @@
 # Sticky Section Header
 
-[![.github/workflows/npm.yml](https://github.com/mayank1513/sticky-section-header/actions/workflows/npm.yml/badge.svg?event=release)](https://github.com/mayank1513/sticky-section-header/actions/workflows/npm.yml)
+This package exports 2 components. `StickySectionHeader` is a light weight simmple to use component. Just wrap your headers/section headers inside `StickySectionHeader` component and provide top (top position - margin from top of viewport) and viewPort (The container element, by default the browser viewport).
 
-`StickySectionHeader` is a light weight simmple to use component. Just wrap your headers/section headers inside `StickySectionHeader` component and provide top (top position - margin from top of viewport) and viewPort (The container element, by default the browser viewport)
+[`CollapsibleStickySectionHeader`](#CollapsibleStickySectionHeader) adds on to the capabilities of `StickySectionHeader`. (See below...)
 
 ## Installation
 
@@ -17,7 +17,7 @@ pnpm i @mayank1513/sticky-section-header
 ## Simple usage
 
 ```
-import from "@mayank1513/sticky-section-header";
+import StickySectionHeader from "@mayank1513/sticky-section-header";
 
 export default function YourComponent() {
   return (
@@ -33,7 +33,7 @@ export default function YourComponent() {
 ## Use with custom top position
 
 ```
-import from "@mayank1513/sticky-section-header";
+import StickySectionHeader from "@mayank1513/sticky-section-header";
 
 export default function YourComponent() {
   return (
@@ -49,7 +49,7 @@ export default function YourComponent() {
 ## Use with custom top position and viewport
 
 ```
-import from "@mayank1513/sticky-section-header";
+import StickySectionHeader from "@mayank1513/sticky-section-header";
 import { useRef } from "react";
 
 export default function YourComponent() {
@@ -66,3 +66,23 @@ export default function YourComponent() {
   );
 }
 ```
+
+# CollapsibleStickySectionHeader
+
+```
+import CollapsibleStickySectionHeader from "@mayank1513/sticky-section-header";
+
+export default function YourComponent() {
+  return (
+    <div>
+        <CollapsibleStickySectionHeader maxHeight={150} minHeight={50}>
+            <YourHeaderComponent>My Awesome Header</YourHeaderComponent>
+        </CollapsibleStickySectionHeader>
+    </div>
+  );
+}
+```
+
+You can also optionally pass onHeightChange function if you need to change something based on the height of the header.
+
+Make sure to set `height: 100%` for the coponent directly inside the `CollapsibleStickySectionHeader`
