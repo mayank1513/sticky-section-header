@@ -28,8 +28,10 @@ jobs:
         run: |
           git config --global user.name "Mayank"
           git config --global user.email "mayank@noreply.github.com"
+          git checkout master
+          git add .
           git status
-          git commit -am "patch version"
+          git commit -m "patch version"
           git push origin master
 
       - name: Copy Readme
