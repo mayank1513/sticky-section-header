@@ -20,10 +20,17 @@ jobs:
       - name: Build package
         run: tsc -p ./packages/ui/tsconfig-cjs.json
 
-      # Removing this step as the updated version is not written back to GitHub repo
-      # - name: Update version
-      #   working-directory: ./packages/ui/dist
-      #   run: npm version patch
+      - name: Update version
+        working-directory: ./packages/ui/dist
+        run: npm version patch
+
+      - name: Save to GitHub
+        run: |
+          git config --global user.name "Mayank"
+          git config --global user.email "mayank@noreply.github.com"
+          git status
+          git commit -am "patch version"
+          git push origin master
 
       - name: Copy Readme
         run: cp ./README.md ./packages/ui/dist/README.md

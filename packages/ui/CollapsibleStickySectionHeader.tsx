@@ -12,8 +12,9 @@ type CollapsibleStickySectionHeaderProps = {
   maxHeight: number;
   minHeight: number;
   onChangeHeight?: (fraction: number, headerHeight: number) => void;
-  top?: number;
+  top?: number; /**distance from top in px when in sticky state */
   viewPort?: ReactElement;
+  nCheckPoints?: number; /**tune performance */
 };
 
 export function CollapsibleStickySectionHeader({
@@ -23,6 +24,7 @@ export function CollapsibleStickySectionHeader({
   onChangeHeight,
   top = 0,
   viewPort,
+  nCheckPoints = 100,
   ...props
 }: CollapsibleStickySectionHeaderProps) {
   const probeRef = useRef<HTMLDivElement>(null);
@@ -33,7 +35,6 @@ export function CollapsibleStickySectionHeader({
   useEffect(() => {
     const target = probeRef?.current;
     if (!target) return;
-    const nCheckPoints = 100;
     const options = {
       root: viewPort || null,
       rootMargin: `${-(top + 1)}px 0px 0px 0px`,
