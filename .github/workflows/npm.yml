@@ -27,7 +27,8 @@ jobs:
       - name: Save to GitHub
         run: |
           git config --global user.name "Mayank"
-          git config --global user.email "mayank@noreply.github.com"
+          git config --global user.email "mayank-automate@noreply.github.com"
+          git fetch
           git checkout master
           git add .
           git status
