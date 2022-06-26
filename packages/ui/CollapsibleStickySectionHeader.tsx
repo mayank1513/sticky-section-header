@@ -11,7 +11,7 @@ type CollapsibleStickySectionHeaderProps = {
   children: ReactNode;
   maxHeight: number;
   minHeight: number;
-  onChangeHeight?: (fraction: number) => void;
+  onChangeHeight?: (fraction: number, headerHeight: number) => void;
   top?: number;
   viewPort?: ReactElement;
 };
@@ -45,11 +45,10 @@ export function CollapsibleStickySectionHeader({
       const header = ref.current;
       if (!header || !entries[0]) return;
       const { intersectionRatio, boundingClientRect } = entries[0];
+      const headerHeight = minHeight + intersectionRatio * probeHeight;
       // @ts-ignore
-      header.style.height = `${
-        maxHeight - (1 - intersectionRatio) * probeHeight
-      }px`;
-      onChangeHeight?.(1 - intersectionRatio);
+      header.style.height = `${headerHeight}px`;
+      onChangeHeight?.(intersectionRatio, headerHeight);
       // @ts-ignore
       header.style.position =
         boundingClientRect.top < top + 1 ? "sticky" : "unset";

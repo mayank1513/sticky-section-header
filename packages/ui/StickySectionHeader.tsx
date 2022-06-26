@@ -4,12 +4,16 @@ type StickySectionHeaderProps = {
   children: ReactNode;
   top?: number;
   viewPort?: ReactElement;
+  callBack?: (entry: any) => void;
+  stick?: boolean;
 };
 
 export function StickySectionHeader({
   children,
   top = 0,
   viewPort,
+  callBack,
+  stick = true,
   ...props
 }: StickySectionHeaderProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,8 +26,10 @@ export function StickySectionHeader({
       threshold: [1],
     };
     const observerHandler = (entries: any[]) => {
-      entries[0].target.style.position =
-        entries[0].boundingClientRect.top < top + 1 ? "sticky" : "unset";
+      callBack?.(entries[0]);
+      if (stick)
+        entries[0].target.style.position =
+          entries[0].boundingClientRect.top < top + 1 ? "sticky" : "unset";
     };
     // @ts-ignore
     const observer = new IntersectionObserver(observerHandler, options);

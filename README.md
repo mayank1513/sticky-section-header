@@ -17,7 +17,7 @@ pnpm i @mayank1513/sticky-section-header
 ## Simple usage
 
 ```
-import StickySectionHeader from "@mayank1513/sticky-section-header";
+import { StickySectionHeader } from "@mayank1513/sticky-section-header";
 
 export default function YourComponent() {
   return (
@@ -33,7 +33,7 @@ export default function YourComponent() {
 ## Use with custom top position
 
 ```
-import StickySectionHeader from "@mayank1513/sticky-section-header";
+import { StickySectionHeader } from "@mayank1513/sticky-section-header";
 
 export default function YourComponent() {
   return (
@@ -49,7 +49,7 @@ export default function YourComponent() {
 ## Use with custom top position and viewport
 
 ```
-import StickySectionHeader from "@mayank1513/sticky-section-header";
+import { StickySectionHeader } from "@mayank1513/sticky-section-header";
 import { useRef } from "react";
 
 export default function YourComponent() {
@@ -67,10 +67,16 @@ export default function YourComponent() {
 }
 ```
 
+## Use as waypoint
+
+If you want to call any function when this element touches top or bottom of the viewport, you can pass in a `callBack` function. This funciton gets the IntersectionObserver entry as argument.
+
+If you want to use this component only as a waypoint and not stick it, you can pass stick={false}.
+
 # CollapsibleStickySectionHeader
 
 ```
-import CollapsibleStickySectionHeader from "@mayank1513/sticky-section-header";
+import { CollapsibleStickySectionHeader } from "@mayank1513/sticky-section-header";
 
 export default function YourComponent() {
   return (
@@ -83,6 +89,6 @@ export default function YourComponent() {
 }
 ```
 
-You can also optionally pass onHeightChange function if you need to change something based on the height of the header.
+You can also optionally pass onHeightChange function if you need to change something based on the height of the header ro the fraction expanded. It provides 2 inputs: fraction (between 0 and 1. 0 = collapsed, 1 = expanded) and height of the header.
 
 Make sure to set `height: 100%` for the coponent directly inside the `CollapsibleStickySectionHeader`

@@ -123,7 +123,9 @@ Make sure to set \`height: 100%\` for the coponent directly inside the \`Collaps
       </section>
       <br />
       <section>
-        <StickySectionHeader top={70}>
+        <StickySectionHeader
+          top={70}
+          callBack={(entry) => console.log("waypoint", entry)}>
           <h2>Use with custom top position</h2>
         </StickySectionHeader>
         <code>

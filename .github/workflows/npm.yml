@@ -25,6 +25,9 @@ jobs:
       #   working-directory: ./packages/ui/dist
       #   run: npm version patch
 
+      - name: Copy Readme
+        run: cp ./README.md ./packages/ui/dist/README.md
+
       - name: Publish tag to npm
         if: contains(github.ref, 'tags')
         working-directory: ./packages/ui/dist
