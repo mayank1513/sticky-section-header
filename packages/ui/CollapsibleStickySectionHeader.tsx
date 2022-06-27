@@ -68,12 +68,14 @@ export function CollapsibleStickySectionHeader({
         position: "relative",
         height: `${maxHeight}px`,
         marginBottom: `${-maxHeight}px`,
+        pointerEvents: "none"
       },
       probe: {
         position: "absolute",
         height: `${probeHeight}px`,
         top: `0px`,
         width: "100%",
+        pointerEvents: "none"
       },
       header: {
         top: `${top}px`,
