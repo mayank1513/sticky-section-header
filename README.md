@@ -1,8 +1,13 @@
 # Sticky Section Header
 
+[![npm version](https://badge.fury.io/js/@mayank1513%2Fsticky-section-header.svg)](https://badge.fury.io/js/@mayank1513%2Fsticky-section-header)
+
 This package exports 2 components. `StickySectionHeader` is a light weight simmple to use component. Just wrap your headers/section headers inside `StickySectionHeader` component and provide top (top position - margin from top of viewport) and viewPort (The container element, by default the browser viewport).
 
 [`CollapsibleStickySectionHeader`](#CollapsibleStickySectionHeader) adds on to the capabilities of `StickySectionHeader`. (See below...)
+
+> Updates:
+> `StickySectionHeader` and `CollapsibleStickySectionHeader` components now set an attribute `stuck` when header is stuck.
 
 ## Installation
 

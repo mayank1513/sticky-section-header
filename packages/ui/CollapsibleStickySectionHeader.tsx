@@ -50,9 +50,11 @@ export function CollapsibleStickySectionHeader({
       // @ts-ignore
       header.style.height = `${headerHeight}px`;
       onChangeHeight?.(intersectionRatio, headerHeight);
+      const isSticky = boundingClientRect.top < top + 1;
       // @ts-ignore
-      header.style.position =
-        boundingClientRect.top < top + 1 ? "sticky" : "unset";
+      header.style.position = isSticky ? "sticky" : "unset";
+      // @ts-ignore
+      header.toggleAttribute("stuck", isSticky);
     };
     // @ts-ignore
     const observer = new IntersectionObserver(observerHandler, options);
@@ -94,7 +96,8 @@ export function CollapsibleStickySectionHeader({
         <div
           className="probe"
           ref={probeRef}
-          style={styles.probe as CSSProperties}></div>
+          style={styles.probe as CSSProperties}
+        ></div>
       </div>
       <header ref={ref} style={styles.header as CSSProperties} {...props}>
         {children}

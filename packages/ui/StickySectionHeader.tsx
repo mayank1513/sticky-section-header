@@ -27,9 +27,13 @@ export function StickySectionHeader({
     };
     const observerHandler = (entries: any[]) => {
       callBack?.(entries[0]);
-      if (stick)
-        entries[0].target.style.position =
-          entries[0].boundingClientRect.top < top + 1 ? "sticky" : "unset";
+      if (stick && entries[0].boundingClientRect.top < top + 1) {
+        entries[0].target.style.position = "sticky";
+        entries[0].target.toggleAttribute("stuck", true);
+      } else {
+        entries[0].target.style.position = "unset";
+        entries[0].target.toggleAttribute("stuck", false);
+      }
     };
     // @ts-ignore
     const observer = new IntersectionObserver(observerHandler, options);
@@ -42,7 +46,8 @@ export function StickySectionHeader({
     <header
       style={{ top: `${top}px`, boxSizing: "border-box" }}
       ref={ref}
-      {...props}>
+      {...props}
+    >
       {children}
     </header>
   );
