@@ -61,9 +61,11 @@ function CollapsibleStickySectionHeader(_a) {
             // @ts-ignore
             header.style.height = `${headerHeight}px`;
             onChangeHeight === null || onChangeHeight === void 0 ? void 0 : onChangeHeight(intersectionRatio, headerHeight);
+            const isSticky = boundingClientRect.top < top + 1;
             // @ts-ignore
-            header.style.position =
-                boundingClientRect.top < top + 1 ? "sticky" : "unset";
+            header.style.position = isSticky ? "sticky" : "unset";
+            // @ts-ignore
+            header.toggleAttribute("stuck", isSticky);
         };
         // @ts-ignore
         const observer = new IntersectionObserver(observerHandler, options);

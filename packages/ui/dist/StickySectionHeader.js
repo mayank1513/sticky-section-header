@@ -50,9 +50,14 @@ function StickySectionHeader(_a) {
         };
         const observerHandler = (entries) => {
             callBack === null || callBack === void 0 ? void 0 : callBack(entries[0]);
-            if (stick)
-                entries[0].target.style.position =
-                    entries[0].boundingClientRect.top < top + 1 ? "sticky" : "unset";
+            if (stick && entries[0].boundingClientRect.top < top + 1) {
+                entries[0].target.style.position = "sticky";
+                entries[0].target.toggleAttribute("stuck", true);
+            }
+            else {
+                entries[0].target.style.position = "unset";
+                entries[0].target.toggleAttribute("stuck", false);
+            }
         };
         // @ts-ignore
         const observer = new IntersectionObserver(observerHandler, options);
