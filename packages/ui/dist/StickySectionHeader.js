@@ -50,13 +50,16 @@ function StickySectionHeader(_a) {
         };
         const observerHandler = (entries) => {
             callBack === null || callBack === void 0 ? void 0 : callBack(entries[0]);
-            if (stick && entries[0].boundingClientRect.top < top + 1) {
-                entries[0].target.style.position = "sticky";
-                entries[0].target.toggleAttribute("stuck", true);
+            if (!entries[0])
+                return;
+            const { boundingClientRect, rootBounds, target } = entries[0];
+            if (stick && boundingClientRect.top - rootBounds.top < top + 1) {
+                target.style.position = "sticky";
+                target.toggleAttribute("stuck", true);
             }
             else {
-                entries[0].target.style.position = "unset";
-                entries[0].target.toggleAttribute("stuck", false);
+                target.style.position = "unset";
+                target.toggleAttribute("stuck", false);
             }
         };
         // @ts-ignore
@@ -65,7 +68,7 @@ function StickySectionHeader(_a) {
         return () => {
             target && observer.unobserve(target);
         };
-    }, [ref === null || ref === void 0 ? void 0 : ref.current, viewPort]);
+    }, [callBack, stick, top, viewPort]);
     return (react_1.default.createElement("header", Object.assign({ style: { top: `${top}px`, boxSizing: "border-box" }, ref: ref }, props), children));
 }
 exports.StickySectionHeader = StickySectionHeader;

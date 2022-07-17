@@ -4,9 +4,9 @@ declare type CollapsibleStickySectionHeaderProps = {
     maxHeight: number;
     minHeight: number;
     onChangeHeight?: (fraction: number, headerHeight: number) => void;
-    top?: number; /**distance from top in px when in sticky state */
+    top?: number /**distance from top in px when in sticky state */;
     viewPort?: ReactElement;
-    nCheckPoints?: number; /**tune performance */
+    nCheckPoints?: number /**tune performance */;
 };
 export declare function CollapsibleStickySectionHeader({ children, maxHeight, minHeight, onChangeHeight, top, viewPort, nCheckPoints, ...props }: CollapsibleStickySectionHeaderProps): JSX.Element;
 export {};
