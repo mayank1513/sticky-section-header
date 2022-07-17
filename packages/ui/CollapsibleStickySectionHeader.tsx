@@ -12,9 +12,9 @@ type CollapsibleStickySectionHeaderProps = {
   maxHeight: number;
   minHeight: number;
   onChangeHeight?: (fraction: number, headerHeight: number) => void;
-  top?: number; /**distance from top in px when in sticky state */
+  top?: number /**distance from top in px when in sticky state */;
   viewPort?: ReactElement;
-  nCheckPoints?: number; /**tune performance */
+  nCheckPoints?: number /**tune performance */;
 };
 
 export function CollapsibleStickySectionHeader({
@@ -45,12 +45,12 @@ export function CollapsibleStickySectionHeader({
     const observerHandler = (entries: any[]) => {
       const header = ref.current;
       if (!header || !entries[0]) return;
-      const { intersectionRatio, boundingClientRect } = entries[0];
+      const { intersectionRatio, boundingClientRect, rootBounds } = entries[0];
       const headerHeight = minHeight + intersectionRatio * probeHeight;
       // @ts-ignore
       header.style.height = `${headerHeight}px`;
       onChangeHeight?.(intersectionRatio, headerHeight);
-      const isSticky = boundingClientRect.top < top + 1;
+      const isSticky = boundingClientRect.top - rootBounds.top < top + 1;
       // @ts-ignore
       header.style.position = isSticky ? "sticky" : "unset";
       // @ts-ignore
@@ -70,14 +70,14 @@ export function CollapsibleStickySectionHeader({
         position: "relative",
         height: `${maxHeight}px`,
         marginBottom: `${-maxHeight}px`,
-        pointerEvents: "none"
+        pointerEvents: "none",
       },
       probe: {
         position: "absolute",
         height: `${probeHeight}px`,
         top: `0px`,
         width: "100%",
-        pointerEvents: "none"
+        pointerEvents: "none",
       },
       header: {
         top: `${top}px`,

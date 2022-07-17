@@ -27,12 +27,14 @@ export function StickySectionHeader({
     };
     const observerHandler = (entries: any[]) => {
       callBack?.(entries[0]);
-      if (stick && entries[0].boundingClientRect.top < top + 1) {
-        entries[0].target.style.position = "sticky";
-        entries[0].target.toggleAttribute("stuck", true);
+      if (!entries[0]) return;
+      const { boundingClientRect, rootBounds, target } = entries[0];
+      if (stick && boundingClientRect.top - rootBounds.top < top + 1) {
+        target.style.position = "sticky";
+        target.toggleAttribute("stuck", true);
       } else {
-        entries[0].target.style.position = "unset";
-        entries[0].target.toggleAttribute("stuck", false);
+        target.style.position = "unset";
+        target.toggleAttribute("stuck", false);
       }
     };
     // @ts-ignore
@@ -41,7 +43,7 @@ export function StickySectionHeader({
     return () => {
       target && observer.unobserve(target);
     };
-  }, [ref?.current, viewPort]);
+  }, [callBack, stick, top, viewPort]);
   return (
     <header
       style={{ top: `${top}px`, boxSizing: "border-box" }}
