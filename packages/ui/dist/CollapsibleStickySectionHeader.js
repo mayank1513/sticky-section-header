@@ -1,4 +1,5 @@
 "use strict";
+"use client";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -37,7 +38,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CollapsibleStickySectionHeader = void 0;
 const react_1 = __importStar(require("react"));
 function CollapsibleStickySectionHeader(_a) {
-    var { children, maxHeight, minHeight, onChangeHeight, top = 0, viewPort, nCheckPoints = 100 } = _a, props = __rest(_a, ["children", "maxHeight", "minHeight", "onChangeHeight", "top", "viewPort", "nCheckPoints"]);
+    var { children, maxHeight, minHeight, onChangeHeight, top = 0, viewPort, nCheckPoints = 100, tag = "header" } = _a, props = __rest(_a, ["children", "maxHeight", "minHeight", "onChangeHeight", "top", "viewPort", "nCheckPoints", "tag"]);
+    const Tag = tag || "header";
     const probeRef = (0, react_1.useRef)(null);
     const ref = (0, react_1.useRef)(null);
     if (minHeight > maxHeight)
@@ -53,7 +55,7 @@ function CollapsibleStickySectionHeader(_a) {
             threshold: [...Array(nCheckPoints).keys(), nCheckPoints].map((i) => i / nCheckPoints),
         };
         const observerHandler = (entries) => {
-            const header = ref.current;
+            const header = ref === null || ref === void 0 ? void 0 : ref.current;
             if (!header || !entries[0])
                 return;
             const { intersectionRatio, boundingClientRect, rootBounds } = entries[0];
@@ -99,6 +101,6 @@ function CollapsibleStickySectionHeader(_a) {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("div", { className: "container", style: styles.container },
             react_1.default.createElement("div", { className: "probe", ref: probeRef, style: styles.probe })),
-        react_1.default.createElement("header", Object.assign({ ref: ref, style: styles.header }, props), children)));
+        react_1.default.createElement(Tag, Object.assign({ ref: ref, style: styles.header }, props), children)));
 }
 exports.CollapsibleStickySectionHeader = CollapsibleStickySectionHeader;

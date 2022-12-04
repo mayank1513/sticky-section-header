@@ -1,0 +1,2 @@
+export type htmlTag = "header" | "footer" | "div" | "section" | "nav" | "q" | "table" | "tr" | "td" | "thead" | "tfoot" | "tbody" | "ul" | "ol" | "li" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+//# sourceMappingURL=htmlTags.d.ts.map

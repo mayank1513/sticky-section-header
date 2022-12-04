@@ -3,7 +3,7 @@
     "repository": "https://github.com/mayank1513/sticky-section-header",
     "author": "Mayank Kumar Chaudhari @mayank1513",
     "private": false,
-    "version": "0.0.9",
+    "version": "0.0.10",
     "main": "./index.js",
     "types": "./index.d.ts",
     "license": "MIT",

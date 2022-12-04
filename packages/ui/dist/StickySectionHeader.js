@@ -1,4 +1,5 @@
 "use strict";
+"use client";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -37,7 +38,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StickySectionHeader = void 0;
 const react_1 = __importStar(require("react"));
 function StickySectionHeader(_a) {
-    var { children, top = 0, viewPort, callBack, stick = true } = _a, props = __rest(_a, ["children", "top", "viewPort", "callBack", "stick"]);
+    var { children, top = 0, viewPort, callBack, stick = true, tag = "header" } = _a, props = __rest(_a, ["children", "top", "viewPort", "callBack", "stick", "tag"]);
+    const Tag = tag || "header";
     const ref = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(() => {
         const target = ref === null || ref === void 0 ? void 0 : ref.current;
@@ -69,6 +71,9 @@ function StickySectionHeader(_a) {
             target && observer.unobserve(target);
         };
     }, [callBack, stick, top, viewPort]);
-    return (react_1.default.createElement("header", Object.assign({ style: { top: `${top}px`, boxSizing: "border-box" }, ref: ref }, props), children));
+    const style = { top: `${top}px`, boxSizing: "border-box" };
+    return (
+    // @ts-ignore
+    react_1.default.createElement(Tag, Object.assign({ style: style, ref: ref }, props), children));
 }
 exports.StickySectionHeader = StickySectionHeader;
