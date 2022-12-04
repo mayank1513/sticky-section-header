@@ -1,4 +1,10 @@
-import React, { ReactElement, ReactNode, useEffect, useRef } from "react";
+import React, {
+  HTMLProps,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
 
 type StickySectionHeaderProps = {
   children: ReactNode;
@@ -6,6 +12,7 @@ type StickySectionHeaderProps = {
   viewPort?: ReactElement;
   callBack?: (entry: any) => void;
   stick?: boolean;
+  tag?: keyof JSX.IntrinsicElements /**html tag to replace header for SEO and symantics */;
 };
 
 export function StickySectionHeader({
@@ -14,8 +21,10 @@ export function StickySectionHeader({
   viewPort,
   callBack,
   stick = true,
+  tag = "header",
   ...props
-}: StickySectionHeaderProps) {
+}: StickySectionHeaderProps & HTMLProps<HTMLElement>) {
+  const Tag = tag || "header";
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const target = ref?.current;
@@ -44,13 +53,11 @@ export function StickySectionHeader({
       target && observer.unobserve(target);
     };
   }, [callBack, stick, top, viewPort]);
+  const style = { top: `${top}px`, boxSizing: "border-box" };
   return (
-    <header
-      style={{ top: `${top}px`, boxSizing: "border-box" }}
-      ref={ref}
-      {...props}
-    >
+    // @ts-ignore
+    <Tag style={style} ref={ref} {...props}>
       {children}
-    </header>
+    </Tag>
   );
 }

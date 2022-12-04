@@ -1,5 +1,7 @@
+"use client";
 import React, {
   CSSProperties,
+  HTMLProps,
   ReactElement,
   ReactNode,
   useEffect,
@@ -15,6 +17,7 @@ type CollapsibleStickySectionHeaderProps = {
   top?: number /**distance from top in px when in sticky state */;
   viewPort?: ReactElement;
   nCheckPoints?: number /**tune performance */;
+  tag?: keyof JSX.IntrinsicElements /**html tag to replace header for SEO and symantics */;
 };
 
 export function CollapsibleStickySectionHeader({
@@ -25,8 +28,10 @@ export function CollapsibleStickySectionHeader({
   top = 0,
   viewPort,
   nCheckPoints = 100,
+  tag = "header",
   ...props
-}: CollapsibleStickySectionHeaderProps) {
+}: CollapsibleStickySectionHeaderProps & HTMLProps<HTMLElement>) {
+  const Tag = tag || "header";
   const probeRef = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLDivElement>(null);
   if (minHeight > maxHeight)
@@ -43,7 +48,7 @@ export function CollapsibleStickySectionHeader({
       ),
     };
     const observerHandler = (entries: any[]) => {
-      const header = ref.current;
+      const header = ref?.current;
       if (!header || !entries[0]) return;
       const { intersectionRatio, boundingClientRect, rootBounds } = entries[0];
       const headerHeight = minHeight + intersectionRatio * probeHeight;
@@ -99,9 +104,10 @@ export function CollapsibleStickySectionHeader({
           style={styles.probe as CSSProperties}
         ></div>
       </div>
-      <header ref={ref} style={styles.header as CSSProperties} {...props}>
+      {/* @ts-ignore to ignore type errors for custom tag */}
+      <Tag ref={ref} style={styles.header as CSSProperties} {...props}>
         {children}
-      </header>
+      </Tag>
     </>
   );
 }
