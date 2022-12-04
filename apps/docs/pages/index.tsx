@@ -94,7 +94,7 @@ Make sure to set \`height: 100%\` for the coponent directly inside the \`Collaps
         </StickySectionHeader>
         <code>
           import &#123;StickySectionHeader&#125; from
-          "@mayank1513/sticky-section-header";
+          &quot;@mayank1513/sticky-section-header&quot;;
         </code>
         <br />
         <br />
@@ -125,12 +125,13 @@ Make sure to set \`height: 100%\` for the coponent directly inside the \`Collaps
       <section>
         <StickySectionHeader
           top={70}
-          callBack={(entry) => console.log("waypoint", entry)}>
+          callBack={(entry) => console.log("waypoint", entry)}
+        >
           <h2>Use with custom top position</h2>
         </StickySectionHeader>
         <code>
           import &#123;StickySectionHeader&#125; from
-          "@mayank1513/sticky-section-header";
+          &quot;@mayank1513/sticky-section-header&quot;;
         </code>
         <br />
         <br />
