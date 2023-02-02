@@ -82,6 +82,8 @@ If you want to call any function when this element touches top or bottom of the 
 
 If you want to use this component only as a waypoint and not stick it, you can pass stick={false}.
 
+For example checkout - https://github.com/mayank1513/dripshop/blob/main/pages/index.tsx
+
 # CollapsibleStickySectionHeader
 
 ```
